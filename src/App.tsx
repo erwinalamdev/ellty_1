@@ -24,7 +24,7 @@ function Checkbox({ checked, onChange }: CheckboxProps) {
       onMouseUp={() => setIsPressed(false)}
     >
       <div
-        className={`w-[23px] h-[23px] rounded-md border transition-all duration-150 flex items-center justify-center
+        className={`w-[25px] h-[25px] rounded-md border transition-all duration-150 flex items-center justify-center
           ${checked
             ? isPressed
               ? 'border-blue-700'
@@ -42,21 +42,21 @@ function Checkbox({ checked, onChange }: CheckboxProps) {
           opacity: checked ? 1 : 0.6,
           backgroundColor: checked
             ? isPressed
-              ? '#1d4ed8'
+              ? '#5087F8'
               : isHovered
-                ? '#3b82f6'
+                ? '#5087F8'
                 : '#2469F6'
             : undefined
         }}
       >
-        {checked && (
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* Show checkmark: solid white when checked, faint gray when hovered (unchecked) */}
+        {(checked || isHovered) && (
+          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="12" viewBox="0 0 18 13" fill="none">
             <path
-              d="M1.5 5L5.5 9L12.5 1"
-              stroke="#FFFFFF"
-              strokeWidth="2"
+              d="M0.5 7.1L6.53451 12.4672C6.55497 12.4854 6.58626 12.4837 6.6047 12.4635L17.5 0.5"
+              stroke={checked ? "white" : "#a8a29e"}
+              strokeOpacity={checked ? 1 : 0.6}
               strokeLinecap="round"
-              strokeLinejoin="round"
             />
           </svg>
         )}
@@ -86,7 +86,7 @@ function Button({ onClick, children }: ButtonProps) {
         gap: '10px',
         borderRadius: '4px',
         backgroundColor: isPressed
-          ? '#E5B91F'
+          ? '#FFCE22'
           : isHovered
             ? '#FFD84D'
             : '#FFCE22',
@@ -189,9 +189,11 @@ function App() {
         >
           <div
             style={{
-              width: '370px',
+              width: '340px',
+              minWidth: '340px',
               height: '0.7px',
-              backgroundColor: '#d6d3d1',
+              minHeight: '0.7px',
+              backgroundColor: '#CDCDCD',
             }}
           />
         </div>
@@ -231,9 +233,11 @@ function App() {
         >
           <div
             style={{
-              width: '370px',
+              width: '340px',
+              minWidth: '340px',
               height: '0.7px',
-              backgroundColor: '#d6d3d1',
+              minHeight: '0.7px',
+              backgroundColor: '#CDCDCD',
             }}
           />
         </div>
