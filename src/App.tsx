@@ -10,11 +10,21 @@ interface CheckboxProps {
 function Checkbox({ checked, onChange }: CheckboxProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [isPressed, setIsPressed] = useState(false)
+  const [isClicked, setIsClicked] = useState(false)
+
+  const handleClick = () => {
+    setIsClicked(true)
+    onChange()
+    // Remove the click effect after a short duration
+    setTimeout(() => {
+      setIsClicked(false)
+    }, 150)
+  }
 
   return (
     <div
-      className="w-6 h-6 relative cursor-pointer flex-shrink-0"
-      onClick={onChange}
+      className="w-8 h-8 relative cursor-pointer flex-shrink-0 flex items-center justify-center"
+      onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false)
@@ -23,6 +33,17 @@ function Checkbox({ checked, onChange }: CheckboxProps) {
       onMouseDown={() => setIsPressed(true)}
       onMouseUp={() => setIsPressed(false)}
     >
+      {/* Click outline effect */}
+      {isClicked && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            borderRadius: '6px',
+            border: '3px solid #2469F6',
+            opacity: 0.1,
+          }}
+        />
+      )}
       <div
         className={`w-[25px] h-[25px] rounded-md border transition-all duration-150 flex items-center justify-center
           ${checked
